@@ -4,7 +4,7 @@ This is a quick demonstration about the utilisation of the Darwin-Ach system to 
 
 ## Step 1: Start the Darwin-OP
 
-Follow the normal process to turn on the Darwin-OP and to turn it on.  Please reference the Darwin-Lofaro-Legacy / Darwin-Ach manual for startup prosedures.  For your reference we will be running the Darwin-Ach server on the Darwin-OP.
+Follow the normal process to turn on the Darwin-OP.  Please reference the Darwin-Lofaro-Legacy / Darwin-Ach manual for startup prosedures.  For your reference we will be running the Darwin-Ach server.
 
 1. Ensure the Darwin-OP is suspended in the air by the strap on its back.
 
@@ -14,11 +14,6 @@ Follow the normal process to turn on the Darwin-OP and to turn it on.  Please re
 
 ```
 $ darwin-ach start server
-```
-
-4. Turn on the Darwin-OPs actuators.
-```
-$ darwin-ach power on
 ```
 
 ## Step 2 (optional): Start the client if running the example on a the backpack computer
@@ -58,6 +53,16 @@ $ ./test
 /* Make System Object */
 DarwinAchClient dac = DarwinAchClient();
 dac.setRefMode(MODE_REF);
+```
+
+3. Turn on the joint's power
+This step turns on the Darwin-OP's joints' power.  The "true" means that the system will block until a conformation that the joints have been turned on has been received.  If set to "false" it will not block.
+
+```
+/* Turn On System */
+r = dac.cmd(DARWIN_CMD_ON, true);
+if( r == DARWIN_CMD_OK ){ r=0; }
+else{ printf("1\n"); return 1; }
 ```
 
 2. Stage all joints to 0.0 rad.
