@@ -38,8 +38,6 @@ int main()
   {
     dac.stageRefPos(i, 0.0);
   }
-  dac.postRef();
-  dac.sleep(2.0);
 
   /* Set Lower Body to be low torque and slow */
   for(int i = DARWIN_MOTOR_MIN_LOWER; i <= DARWIN_MOTOR_MAX_LOWER; i++)
@@ -48,7 +46,7 @@ int main()
     dac.stageRefTorque(i, 0.5);
   }
   dac.postRef();
-  dac.sleep(0.5);
+  dac.sleep(2.0);
 
   double val = 0.1;
   while(1)
